@@ -26,7 +26,8 @@
                 quis?
               </p>
             </div>
-            <button id="order-btn">Add to Order</button>
+            <button type="button" class="btn" @click="showModal">Add to Order</button>
+            <Modal v-show="isModalVisible" @close="closeModal" />
           </div>
         </div>
         <div class="card">
@@ -39,7 +40,8 @@
                 quis?
               </p>
             </div>
-            <button id="order-btn">Add to Order</button>
+            <button type="button" class="btn" @click="showModal">Add to Order</button>
+            <Modal v-show="isModalVisible" @close="closeModal" />
           </div>
         </div>
         <div class="card">
@@ -56,7 +58,7 @@
           </div>
         </div>
       </div>
-              <div class="menu">
+      <div class="menu">
           <div class="card">
             <div class="card-content">
               <img src="https://dummyimage.com/200" alt="" />
@@ -109,11 +111,29 @@
 </template>
 
 <script>
+import Modal from './Modal'
+
 export default {
-  name: "Home",
+  name: "Home", 
+  components: {
+    Modal
+  },
   props: {
     msg: String,
   },
+   data() {
+      return {
+        isModalVisible: false,
+      };
+    },
+    methods: {
+      showModal() {
+        this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
+      }
+    }
 };
 </script>
 
@@ -179,4 +199,11 @@ a {
   margin: 20px;
 }
 
+.order-btn {
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #9a9a9a;
+  box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+}
 </style>
