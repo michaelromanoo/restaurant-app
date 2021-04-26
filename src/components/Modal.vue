@@ -37,8 +37,8 @@
       </section>
       <footer class="modal-footer">
         <div class="modal-btns">
-          <button type="button" class="btn-green" @click="close"> Cancel </button>
-          <button type="button" class="btn-green" @click="add"> Add to Order</button>
+          <button type="button" class="btn" @click="close"> Cancel </button>
+          <button type="button" class="btn" @click="add"> Add to Order</button>
         </div>
       </footer>
     </div>
@@ -96,10 +96,15 @@ export default {
   justify-content: flex-end;
 }
 
+.modal-btns {
+  display: flex;
+  flex-direction: row;
+}
+
 .modal-btns button {
-  display: inline;
-  width: 200px;
-  margin: 0 auto;
+  flex: 1;
+  margin: 10px;
+  padding: 5px 10px;
 }
 
 .modal-body {
@@ -132,15 +137,15 @@ export default {
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
-  color: #4AAE9B;
+  color: #9a9a9a;
   background: transparent;
 }
 
-.btn-green {
-  color: white;
-  background: #4AAE9B;
-  border: 1px solid #4AAE9B;
-  border-radius: 2px;
+.btn {
+  color: black;
+  background: #9a9a9a;
+  border: 1px solid #9a9a9a;
+  border-radius: 5px;
 }
 
 </style>
