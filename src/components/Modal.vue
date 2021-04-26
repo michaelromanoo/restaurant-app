@@ -1,17 +1,45 @@
 <template>
-  <div class="modal-backdrop">
+  <div class="modal-overlay">
     <div class="modal">
       <header class="modal-header">
         <button type="button" class="btn-close" @click="close">x</button>
       </header>
       <section class="modal-body">
-        <slot name="body"> This is the default body! </slot>
+        <img src="https://via.placeholder.com/150" alt="" />
+        <h2>Menu Item</h2>
+        <select>
+          <option value="" disabled selected>Qty</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+        <div class="modal-radio">
+          <input type="radio" id="radio-one" value="Product Option 1" v-model="picked">
+          <label for="one">Product Option 1</label>
+          <br>
+          <input type="radio" id="radio-two" value="Product Option 2" v-model="picked">
+          <label for="two">Product Option 2</label>
+          <br>
+          <input type="radio" id="radio-three" value="Product Option 3" v-model="picked">
+          <label for="two">Product Option 3</label>
+          <br>
+        </div>
+        <div class="modal-input">
+          <input type="checkbox" id="input-1" value="Product Option 1"  v-model="checkedNames">
+          <label for="jack">Product Option 1</label>
+          <br>
+          <input type="checkbox" id="input-2" value="Product Option 2" v-model="checkedNames">
+          <label for="john">Product Option 2</label>
+          <br/>
+          <input type="checkbox" id="input-3" value="Product Option 3" v-model="checkedNames">
+          <label for="mike">Product Option 3</label>
+        </div>
       </section>
       <footer class="modal-footer">
-        <slot name="footer"> This is the default footer! </slot>
-        <button type="button" class="btn-green" @click="close">
-          Close Modal
-        </button>
+        <div class="modal-btns">
+          <button type="button" class="btn-green" @click="close"> Cancel </button>
+          <button type="button" class="btn-green" @click="add"> Add to Order</button>
+        </div>
       </footer>
     </div>
   </div>
@@ -29,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-.modal-backdrop {
+.modal-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -47,48 +75,72 @@ export default {
   overflow-x: auto;
   display: flex;
   flex-direction: column;
+  height: 400px;
+  width: 400px;
 }
 
-  .modal-header,
-  .modal-footer {
-    padding: 15px;
-    display: flex;
-  }
+.modal-header,
+.modal-footer {
+  padding: 15px;
+  display: flex;
+}
 
-  .modal-header {
-    position: relative;
-    color: #4AAE9B;
-    justify-content: space-between;
-  }
+.modal-header {
+  position: relative;
+  color: #4AAE9B;
+  justify-content: space-between;
+}
 
-  .modal-footer {
-    flex-direction: column;
-    justify-content: flex-end;
-  }
+.modal-footer {
+  flex-direction: column;
+  justify-content: flex-end;
+}
 
-  .modal-body {
-    position: relative;
-    padding: 20px 10px;
-  }
+.modal-btns button {
+  display: inline;
+  width: 200px;
+  margin: 0 auto;
+}
 
-    .btn-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    font-size: 20px;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #4AAE9B;
-    background: transparent;
-  }
+.modal-body {
+  position: relative;
+  padding: 0px 15px;
+  text-align: left;
+}
 
-  .btn-green {
-    color: white;
-    background: #4AAE9B;
-    border: 1px solid #4AAE9B;
-    border-radius: 2px;
-  }
+.modal-body img {
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-body select {
+  width: 100%;
+}
+
+.modal-body .modal-radio,
+.modal-body .modal-input {
+  text-align: left;
+  padding: 15px 0px;
+}
+
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #4AAE9B;
+  background: transparent;
+}
+
+.btn-green {
+  color: white;
+  background: #4AAE9B;
+  border: 1px solid #4AAE9B;
+  border-radius: 2px;
+}
 
 </style>

@@ -27,7 +27,6 @@
               </p>
             </div>
             <button type="button" class="btn" @click="showModal">Add to Order</button>
-            <Modal v-show="isModalVisible" @close="closeModal" />
           </div>
         </div>
         <div class="card">
@@ -41,7 +40,6 @@
               </p>
             </div>
             <button type="button" class="btn" @click="showModal">Add to Order</button>
-            <Modal v-show="isModalVisible" @close="closeModal" />
           </div>
         </div>
         <div class="card">
@@ -54,7 +52,7 @@
                 quis?
               </p>
             </div>
-            <button id="order-btn">Add to Order</button>
+            <button type="button" class="btn" @click="showModal">Add to Order</button>
           </div>
         </div>
       </div>
@@ -69,7 +67,7 @@
                   Magnam, quis?
                 </p>
               </div>
-              <button id="order-btn">Add to Order</button>
+              <button type="button" class="btn" @click="showModal">Add to Order</button>
             </div>
           </div>
           <div class="card">
@@ -82,7 +80,7 @@
                   Magnam, quis?
                 </p>
               </div>
-              <button>Add to Order</button>
+              <button type="button" class="btn" @click="showModal">Add to Order</button>
             </div>
           </div>
           <div class="card">
@@ -94,12 +92,13 @@
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Magnam, quis?
                 </p>
-                <button>Add to Order</button>
+                <button type="button" class="btn" @click="showModal">Add to Order</button>
               </div>
             </div>
           </div>
         </div>
     </div>
+    <Modal v-show="isModalVisible" @close="closeModal" />
     <div class="basket-info">
       <div class="basket-card">
         <h2>Your Basket</h2>
