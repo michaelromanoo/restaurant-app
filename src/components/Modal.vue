@@ -2,44 +2,52 @@
   <div class="modal-overlay">
     <div class="modal">
       <header class="modal-header">
-        <button type="button" class="btn-close" @click="close">x</button>
+        <button type="button" class="btn-close" @click="$emit('close')">
+          x
+        </button>
       </header>
       <section class="modal-body">
-        <img src="https://via.placeholder.com/150" alt="" />
-        <h2>Menu Item</h2>
-        <select>
-          <option value="" disabled selected>Qty</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-        </select>
-        <div class="modal-radio">
-          <input type="radio" id="radio-one" value="Product Option 1" v-model="picked">
-          <label for="one">Product Option 1</label>
-          <br>
-          <input type="radio" id="radio-two" value="Product Option 2" v-model="picked">
-          <label for="two">Product Option 2</label>
-          <br>
-          <input type="radio" id="radio-three" value="Product Option 3" v-model="picked">
-          <label for="two">Product Option 3</label>
-          <br>
-        </div>
-        <div class="modal-input">
-          <input type="checkbox" id="input-1" value="Product Option 1"  v-model="checkedNames">
-          <label for="jack">Product Option 1</label>
-          <br>
-          <input type="checkbox" id="input-2" value="Product Option 2" v-model="checkedNames">
-          <label for="john">Product Option 2</label>
-          <br/>
-          <input type="checkbox" id="input-3" value="Product Option 3" v-model="checkedNames">
-          <label for="mike">Product Option 3</label>
-        </div>
+        <slot name="body">
+          <img src="https://via.placeholder.com/150" alt="" />
+          <h2>Menu Item</h2>
+          <select>
+            <option value="" disabled selected>Qty</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+          <div class="modal-radio">
+            <input type="radio" id="radio-one" value="Product Option 1" />
+            <label for="one">Product Option 1</label>
+            <br />
+            <input type="radio" id="radio-two" value="Product Option 2" />
+            <label for="two">Product Option 2</label>
+            <br />
+            <input type="radio" id="radio-three" value="Product Option 3" />
+            <label for="two">Product Option 3</label>
+            <br />
+          </div>
+          <div class="modal-input">
+            <input type="checkbox" id="input-1" value="Product Option 1" />
+            <label for="jack">Product Option 1</label>
+            <br />
+            <input type="checkbox" id="input-2" value="Product Option 2" />
+            <label for="john">Product Option 2</label>
+            <br />
+            <input type="checkbox" id="input-3" value="Product Option 3" />
+            <label for="mike">Product Option 3</label>
+          </div>
+        </slot>
       </section>
       <footer class="modal-footer">
-        <div class="modal-btns">
-          <button type="button" class="btn" @click="close"> Cancel </button>
-          <button type="button" class="btn" @click="add"> Add to Order</button>
-        </div>
+        <slot name="footer">
+          <div class="modal-btns">
+            <button type="button" class="btn">Cancel</button>
+            <button type="button" class="btn" @click="addButton">
+              Add to Order
+            </button>
+          </div>
+        </slot>
       </footer>
     </div>
   </div>
@@ -49,8 +57,8 @@
 export default {
   name: "Modal",
   methods: {
-    close() {
-      this.$emit("close");
+    addButton() {
+      console.log("add button");
     },
   },
 };
@@ -75,7 +83,7 @@ export default {
   overflow-x: auto;
   display: flex;
   flex-direction: column;
-  height: 400px;
+  /* height: 400px; */
   width: 400px;
 }
 
@@ -87,7 +95,7 @@ export default {
 
 .modal-header {
   position: relative;
-  color: #4AAE9B;
+  color: #4aae9b;
   justify-content: space-between;
 }
 
@@ -147,5 +155,4 @@ export default {
   border: 1px solid #9a9a9a;
   border-radius: 5px;
 }
-
 </style>

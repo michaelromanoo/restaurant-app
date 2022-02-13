@@ -30,12 +30,4 @@ export default {
   margin: 20px;
   background-color: #f1f1f1;
 }
-
-.order-btn {
-  padding: 10px;
-  width: 100%;
-  border-radius: 10px;
-  background-color: #9a9a9a;
-  box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-}
 </style>
