@@ -14,7 +14,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .basket-info {
   flex: 1;
 }
@@ -23,11 +23,22 @@ export default {
   text-align: center;
   background-color: #f1f1f1;
   margin: 20px;
+  border-radius: 1rem;
 }
+@media (min-width: 768px) {
+  .basket-card {
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    margin: 20px;
+  }
 
-.baket-btn {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
+  .basket-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #9a9a9a;
+    border: none;
+  }
 }
 </style>
