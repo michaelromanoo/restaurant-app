@@ -8,45 +8,32 @@
       </header>
       <section class="modal-body">
         <slot name="body">
-          <img src="https://via.placeholder.com/150" alt="" />
-          <h2>Menu Item</h2>
-          <select>
-            <option value="" disabled selected>Qty</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-          <div class="modal-radio">
-            <input type="radio" id="radio-one" value="Product Option 1" />
-            <label for="one">Product Option 1</label>
-            <br />
-            <input type="radio" id="radio-two" value="Product Option 2" />
-            <label for="two">Product Option 2</label>
-            <br />
-            <input type="radio" id="radio-three" value="Product Option 3" />
-            <label for="two">Product Option 3</label>
-            <br />
-          </div>
-          <div class="modal-input">
-            <input type="checkbox" id="input-1" value="Product Option 1" />
-            <label for="jack">Product Option 1</label>
-            <br />
-            <input type="checkbox" id="input-2" value="Product Option 2" />
-            <label for="john">Product Option 2</label>
-            <br />
-            <input type="checkbox" id="input-3" value="Product Option 3" />
-            <label for="mike">Product Option 3</label>
-          </div>
+          <form class="order-form" @submit="onSubmit">
+            <h2>{{ title }}</h2>
+            <p>{{ description }}</p>
+            <img src="https://via.placeholder.com/150" alt="" />
+            <select v-model="quantity">
+              <option value="" disabled selected>Quantity</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+            <!-- pass vue slot into a component -->
+            <!-- todo: study vue slots -->
+            <div class="modal-btns">
+              <button type="button" class="btn">Cancel</button>
+              <button type="submit" class="btn">
+                Add to Order
+              </button>
+            </div>
+          </form>
         </slot>
       </section>
       <footer class="modal-footer">
         <slot name="footer">
-          <div class="modal-btns">
+          <!-- <div class="modal-btns">
             <button type="button" class="btn">Cancel</button>
-            <button type="button" class="btn" @click="addButton">
-              Add to Order
-            </button>
-          </div>
+          </div> -->
         </slot>
       </footer>
     </div>
@@ -56,9 +43,34 @@
 <script>
 export default {
   name: "Modal",
+  data() {
+    return {
+      quantity: "",
+      radio: "",
+      drink: "",
+    };
+  },
+  props: {
+    title: String,
+    description: String,
+    price: Number,
+  },
   methods: {
-    addButton() {
-      console.log("add button");
+    showData() {
+      // console.log("add button");
+      console.log("quantity", this.quantity);
+      // this.$emit("basket-data", this.quantity);
+    },
+    onSubmit(event) {
+      event.preventDefault();
+      // console.log("form value", submitEvent.target.elements.name.value);
+      // console.log("quantity", this.quantity);
+      // console.log("burger", this.radio);
+      // console.log("drink", this.drink);
+
+      // const basketData = {
+      //   quantity: this.quantity,
+      // };
     },
   },
 };
@@ -121,13 +133,18 @@ export default {
   text-align: left;
 }
 
+.modal-body > .order-form {
+  text-align: center;
+}
+
 .modal-body img {
   display: block;
   margin: 0 auto;
 }
 
 .modal-body select {
-  width: 100%;
+  margin: 10px;
+  width: 50%;
 }
 
 .modal-body .modal-radio,
