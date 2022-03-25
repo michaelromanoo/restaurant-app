@@ -18,30 +18,86 @@
           dolore quae aliquid unde doloremque deleniti!
         </p>
         <div class="menu">
-          <Item />
-          <Item />
-          <Item />
-        </div>
-        <div class="menu">
-          <Item />
-          <Item />
-          <Item />
+          <Items :items="items" />
         </div>
       </div>
       <Basket />
     </div>
+    <Modal v-show="isModalVisible" @close="closeModal" />
   </div>
 </template>
 
 <script>
-import Item from "./components/Item.vue";
+import Items from "./components/Items.vue";
 import Basket from "./components/Basket.vue";
+import Modal from "./components/Modal.vue";
 
 export default {
   name: "App",
   components: {
-    Item,
+    Items,
     Basket,
+    Modal,
+  },
+  data() {
+    return {
+      items: [],
+      isModalVisible: false,
+    };
+  },
+  created() {
+    this.items = [
+      {
+        id: 1,
+        title: "Classic Burger",
+        description: "4oz beef patty, pickles, onion, lettuce, house sauce",
+        price: 105,
+      },
+      {
+        id: 2,
+        title: "Cheese Burger",
+        description:
+          "4oz beef patty, cheese, pickles, onion, lettuce, house sauce",
+        price: 115,
+      },
+      {
+        id: 3,
+        title: "Double Cheese Burger",
+        description:
+          "Double 4oz beef patty, double cheese, pickles, onion, lettuce, house sauce",
+        price: 115,
+      },
+      {
+        id: 4,
+        title: "Classic Fries",
+        description: "Fries homie",
+        price: 35,
+      },
+      {
+        id: 5,
+        title: "Cheese Fries",
+        description: "Fries homie but with hella cheese",
+        price: 40,
+      },
+      {
+        id: 6,
+        title: "Chili Cheese Fries",
+        description: "Spicy cheese fries on the dead homies",
+        price: 45,
+      },
+    ];
+  },
+  methods: {
+    showModal() {
+      console.log("show modal");
+      console.log("isVisible", this.isModalVisible);
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      console.log("close modal");
+      console.log("isVisible", this.isModalVisible);
+      this.isModalVisible = false;
+    },
   },
 };
 </script>
@@ -64,6 +120,7 @@ export default {
 }
 
 .menu {
-  display: flex;
+  /* flex: 1; */
+  /* display: flex; */
 }
 </style>
