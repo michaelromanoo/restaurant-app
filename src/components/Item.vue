@@ -15,6 +15,7 @@
         :title="item.title"
         :description="item.description"
         :price="item.price"
+        :id="item.id"
         v-show="isModalVisible"
         @close="closeModal"
       />
@@ -40,12 +41,12 @@ export default {
   methods: {
     showModal() {
       console.log("show modal");
-      console.log("isVisible", this.isModalVisible);
+      // console.log("isVisible", this.isModalVisible);
       this.isModalVisible = true;
     },
     closeModal() {
       console.log("close modal");
-      console.log("isVisible", this.isModalVisible);
+      // console.log("isVisible", this.isModalVisible);
       this.isModalVisible = false;
     },
   },

@@ -1,16 +1,24 @@
 <template>
   <div class="basket-info">
     <div class="basket-card">
+      <!-- TODO: allow users to edit product quantity using state -->
+      <!-- add +/- buttons to allow users to make changes to order -->
       <h2>Your Basket</h2>
-      <p>Your Basket is empty....</p>
-      <button type="button" class="basket-btn">Checkout</button>
+      <div v-for="product in allProducts" :key="product.id">
+        <p>{{ product.quantity }} X {{ product.title }} ${{ product.price }}</p>
+      </div>
+      <!-- TODO: compute total price in state and display it here -->
+      <p>Total Price:</p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Basket",
+  computed: mapGetters(["allProducts"]),
 };
 </script>
 
@@ -19,19 +27,21 @@ export default {
   flex: 1;
 }
 .basket-card {
+  /* position: fixed; */
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;
-  margin: 20px;
+  /* margin: 20px; */
   border-radius: 1rem;
 }
+
 @media (min-width: 768px) {
-  .basket-card {
+  /* .basket-card {
     padding: 16px;
     text-align: center;
     background-color: #f1f1f1;
     margin: 20px;
-  }
+  } */
 
   .basket-btn {
     width: 100%;

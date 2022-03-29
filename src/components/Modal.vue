@@ -8,23 +8,21 @@
       </header>
       <section class="modal-body">
         <slot name="body">
+          <!-- TODO: disable submit when quantity = 0 -->
           <form class="order-form" @submit="onSubmit">
             <h2>{{ title }}</h2>
             <p>{{ description }}</p>
             <img src="https://via.placeholder.com/150" alt="" />
-            <select v-model="quantity">
-              <option value="" disabled selected>Quantity</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
+            <br />
+            <input
+              type="number"
+              v-model="quantity"
+              placeholder="Insert Quantity..."
+            />
             <!-- pass vue slot into a component -->
             <!-- todo: study vue slots -->
             <div class="modal-btns">
-              <button type="button" class="btn">Cancel</button>
-              <button type="submit" class="btn">
-                Add to Order
-              </button>
+              <button type="submit" class="btn">Add for ${{ price }}</button>
             </div>
           </form>
         </slot>
@@ -46,31 +44,28 @@ export default {
   data() {
     return {
       quantity: "",
-      radio: "",
-      drink: "",
     };
   },
   props: {
     title: String,
     description: String,
     price: Number,
+    id: Number,
   },
   methods: {
-    showData() {
-      // console.log("add button");
-      console.log("quantity", this.quantity);
-      // this.$emit("basket-data", this.quantity);
-    },
     onSubmit(event) {
       event.preventDefault();
-      // console.log("form value", submitEvent.target.elements.name.value);
-      // console.log("quantity", this.quantity);
-      // console.log("burger", this.radio);
-      // console.log("drink", this.drink);
-
-      // const basketData = {
-      //   quantity: this.quantity,
-      // };
+      // close modal on form submit
+      this.$emit("close");
+      // send product info as object to state
+      // triggers setProduct action
+      this.$store.dispatch({
+        type: "setProduct",
+        id: this.id,
+        title: this.title,
+        quantity: this.quantity,
+        price: this.price,
+      });
     },
   },
 };
@@ -124,7 +119,7 @@ export default {
 .modal-btns button {
   flex: 1;
   margin: 10px;
-  padding: 5px 10px;
+  padding: 10px;
 }
 
 .modal-body {
@@ -153,6 +148,10 @@ export default {
   padding: 15px 0px;
 }
 
+input[type="number"] {
+  border: none;
+}
+
 .btn-close {
   position: absolute;
   top: 0;
@@ -171,5 +170,6 @@ export default {
   background: #9a9a9a;
   border: 1px solid #9a9a9a;
   border-radius: 5px;
+  font-weight: 700;
 }
 </style>
