@@ -7,6 +7,8 @@ const state = {
 // computed properties for stores.
 const getters = {
   allProducts: (state) => state.products,
+  totalPrice: (state) =>
+    state.products.reduce((acc, curr) => acc + curr.price, 0),
 };
 
 // the only way to actually change state in a Vuex store

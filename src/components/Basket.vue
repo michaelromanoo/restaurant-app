@@ -7,8 +7,7 @@
       <div v-for="product in allProducts" :key="product.id">
         <p>{{ product.quantity }} X {{ product.title }} ${{ product.price }}</p>
       </div>
-      <!-- TODO: compute total price in state and display it here -->
-      <p>Total Price:</p>
+      <p>Total Price: {{ totalPrice }}</p>
     </div>
   </div>
 </template>
@@ -18,7 +17,7 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "Basket",
-  computed: mapGetters(["allProducts"]),
+  computed: mapGetters(["allProducts", "totalPrice"]),
 };
 </script>
 
