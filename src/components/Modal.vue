@@ -21,6 +21,7 @@
             />
             <!-- pass vue slot into a component -->
             <!-- todo: study vue slots -->
+            <!-- TODO: change price as quantity changes -->
             <div class="modal-btns">
               <button type="submit" class="btn">Add for ${{ price }}</button>
             </div>
@@ -59,11 +60,10 @@ export default {
       this.$emit("close");
       // send product info as object to state
       // triggers setProduct action
-      this.$store.dispatch({
-        type: "setProduct",
+      this.$store.dispatch("setProduct", {
         id: this.id,
         title: this.title,
-        quantity: this.quantity,
+        quantity: Number(this.quantity),
         price: this.price,
       });
     },
