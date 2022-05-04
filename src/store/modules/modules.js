@@ -1,12 +1,17 @@
 // each module contains its own state, getters, actions & mutations
 const state = {
+  strict: true,
   products: [],
 };
 
 // used to compute derived state based on store state
 // computed properties for stores.
 const getters = {
+  // get all products
   allProducts: (state) => state.products,
+  // get products length
+  productsLength: (state) => state.products.length,
+  // get price of all products
   totalPrice: (state) =>
     state.products.reduce((acc, curr) => acc + curr.price * curr.quantity, 0),
 };
@@ -40,14 +45,33 @@ const mutations = {
     product[0].quantity++;
   },
   decrementQuantity(state, id) {
-    // filter out product with passed id
-    let product = state.products.filter((product) => product.id == id);
-    console.log("quantity", product[0].quantity);
+    let index = state.products.findIndex((product) => product.id == id);
+    let product = state.products[index];
+    console.log("index", index);
+    console.log("product", state.products[index]);
+
+    console.log("before decrement quantity", product.quantity);
+    if (product.quantity > 0) {
+      product.quantity--;
+    }
+
+    if (product.quantity == 0) {
+      state.products.splice(index, 1);
+    }
+
+    console.log("after decrement quantity", product.quantity);
+
+    // product[0].quantity > 0
+    //   ? product[0].quantity--
+    //   : state.products.pop(product[0]);
+    // if quantity before decrement > 0, decrease by 1
+    // if (product[0].quantity > 0) {
+    //   product[0].quantity--;
+    // }
     // stop decrement when quantity = 0
-    // TODO: code hella janky lmao needa fix
-    product[0].quantity > 0
-      ? product[0].quantity--
-      : state.products.pop(product[0]);
+    // if (product[0].quantity == 0) {
+    //   // state.products.pop(product[0]);
+    // }
   },
 };
 

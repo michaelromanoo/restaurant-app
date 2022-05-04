@@ -1,9 +1,10 @@
 // NEW CODE
 <template>
   <div id="app">
+    <Header />
     <div class="content">
       <div class="restaurant-info">
-        <h1>Restaurant App</h1>
+        <!-- <h1>Restaurant App</h1> -->
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ex quo
           eum commodi vero veritatis sit excepturi fugit sunt laboriosam odit
@@ -23,21 +24,20 @@
       </div>
       <Basket />
     </div>
-    <Modal v-show="isModalVisible" @close="closeModal" />
   </div>
 </template>
 
 <script>
+import Header from "./components/Header.vue";
 import Items from "./components/Items.vue";
 import Basket from "./components/Basket.vue";
-import Modal from "./components/Modal.vue";
 
 export default {
   name: "App",
   components: {
+    Header,
     Items,
     Basket,
-    Modal,
   },
   data() {
     return {
@@ -112,15 +112,16 @@ export default {
 }
 
 .content {
-  display: flex;
+  margin-bottom: 100px;
 }
 
-.restaurant-info {
-  flex: 2;
-}
+@media (min-width: 768px) {
+  .content {
+    display: flex;
+  }
 
-.menu {
-  /* flex: 1; */
-  /* display: flex; */
+  .restaurant-info {
+    flex: 2;
+  }
 }
 </style>
