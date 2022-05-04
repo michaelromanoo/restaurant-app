@@ -22,6 +22,7 @@
             <!-- pass vue slot into a component -->
             <!-- todo: study vue slots -->
             <!-- TODO: change price as quantity changes -->
+            <!-- TODO: display 0 value -->
             <div class="modal-btns">
               <button type="submit" class="btn">Add for ${{ price }}</button>
             </div>
@@ -56,16 +57,25 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      // close modal on form submit
-      this.$emit("close");
-      // send product info as object to state
-      // triggers setProduct action
-      this.$store.dispatch("setProduct", {
-        id: this.id,
-        title: this.title,
-        quantity: Number(this.quantity),
-        price: this.price,
-      });
+      console.log("event", event.target[0].value);
+      // TODO: if value = 0, disable buttton
+      if (!this.quantity) {
+        console.log("hello error");
+      }
+      if (event.target[0].value == 0 || event.target[0].value == "") {
+        return "";
+      } else {
+        // send product info as object to state
+        // triggers setProduct action
+        this.$store.dispatch("setProduct", {
+          id: this.id,
+          title: this.title,
+          quantity: Number(this.quantity),
+          price: this.price,
+        });
+        // close modal on form submit
+        this.$emit("close");
+      }
     },
   },
 };
@@ -167,8 +177,8 @@ input[type="number"] {
 
 .btn {
   color: black;
-  background: #9a9a9a;
-  border: 1px solid #9a9a9a;
+  background: #00ccbc;
+  border: 1px solid #00ccbc;
   border-radius: 5px;
   font-weight: 700;
 }
