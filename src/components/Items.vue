@@ -1,6 +1,6 @@
 <template>
   <div class="menu-grid">
-    <div :key="item.id" v-for="item in items">
+    <div class="menu-item-card" :key="item.id" v-for="item in items">
       <Item :item="item" />
     </div>
   </div>

@@ -1,26 +1,26 @@
 <template>
-  <div>
-    <div class="card">
-      <div class="card-content">
-        <img src="https://dummyimage.com/200" alt="" />
-        <div class="card-text">
-          <h3>{{ item.title }}</h3>
-          <p>${{ item.price }}</p>
-        </div>
-        <button type="button" class="order-btn" @click="showModal">
-          Add to order
-        </button>
+  <!-- <div> -->
+  <div class="card">
+    <div class="card-content">
+      <img src="https://dummyimage.com/200" alt="" />
+      <div class="card-text">
+        <p>{{ item.title }}</p>
+        <p>${{ item.price }}</p>
       </div>
-      <Modal
-        :title="item.title"
-        :description="item.description"
-        :price="item.price"
-        :id="item.id"
-        v-show="isModalVisible"
-        @close="closeModal"
-      />
+      <button type="button" class="order-btn" @click="showModal">
+        Add to order
+      </button>
     </div>
+    <Modal
+      :title="item.title"
+      :description="item.description"
+      :price="item.price"
+      :id="item.id"
+      v-show="isModalVisible"
+      @close="closeModal"
+    />
   </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -63,11 +63,15 @@ export default {
   background-color: #f1f1f1;
 }
 
+.card-text > p:first-child {
+  font-weight: 600;
+}
+
 .order-btn {
   padding: 10px;
   width: 100%;
   border-radius: 10px;
-  background-color: #9a9a9a;
+  background-color: #00ccbc;
   border: none;
 }
 
