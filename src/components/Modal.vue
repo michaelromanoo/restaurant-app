@@ -1,185 +1,185 @@
 <template>
-  <div class="modal-overlay">
-    <div class="modal">
-      <header class="modal-header">
-        <button type="button" class="btn-close" @click="$emit('close')">
-          x
-        </button>
-      </header>
-      <section class="modal-body">
-        <slot name="body">
-          <!-- TODO: disable submit when quantity = 0 -->
-          <form class="order-form" @submit="onSubmit">
-            <h2>{{ title }}</h2>
-            <p>{{ description }}</p>
-            <img src="https://via.placeholder.com/150" alt="" />
-            <br />
-            <input
-              type="number"
-              v-model="quantity"
-              placeholder="Insert Quantity..."
-            />
-            <!-- pass vue slot into a component -->
-            <!-- todo: study vue slots -->
-            <!-- TODO: change price as quantity changes -->
-            <!-- TODO: display 0 value -->
-            <div class="modal-btns">
-              <button type="submit" class="btn">Add for ${{ price }}</button>
-            </div>
-          </form>
-        </slot>
-      </section>
-      <footer class="modal-footer">
-        <slot name="footer">
-          <!-- <div class="modal-btns">
+	<div class="modal-overlay">
+		<div class="modal">
+			<header class="modal-header">
+				<button type="button" class="btn-close" @click="$emit('close')">
+					x
+				</button>
+			</header>
+			<section class="modal-body">
+				<slot name="body">
+					<form class="order-form" @submit="onSubmit">
+						<h2>{{ title }}</h2>
+						<p>{{ description }}</p>
+						<img src="https://via.placeholder.com/150" alt="" />
+						<br />
+						<input
+							type="number"
+							v-model="quantity"
+							placeholder="Insert Quantity..."
+						/>
+						<!-- pass vue slot into a component -->
+						<!-- todo: study vue slots -->
+						<!-- TODO: add increment/decrement to allow users to change the quantity -->
+						<!-- TODO: change price as quantity changes -->
+						<div class="modal-btns">
+							<button type="submit" class="btn">Add for ${{ price }}</button>
+						</div>
+					</form>
+				</slot>
+			</section>
+			<footer class="modal-footer">
+				<slot name="footer">
+					<!-- <div class="modal-btns">
             <button type="button" class="btn">Cancel</button>
           </div> -->
-        </slot>
-      </footer>
-    </div>
-  </div>
+				</slot>
+			</footer>
+		</div>
+	</div>
 </template>
 
 <script>
 export default {
-  name: "Modal",
-  data() {
-    return {
-      quantity: "",
-    };
-  },
-  props: {
-    title: String,
-    description: String,
-    price: Number,
-    id: Number,
-  },
-  methods: {
-    onSubmit(event) {
-      event.preventDefault();
-      console.log("event", event.target[0].value);
-      // TODO: if value = 0, disable buttton
-      if (!this.quantity) {
-        console.log("hello error");
-      }
-      if (event.target[0].value == 0 || event.target[0].value == "") {
-        return "";
-      } else {
-        // send product info as object to state
-        // triggers setProduct action
-        this.$store.dispatch("setProduct", {
-          id: this.id,
-          title: this.title,
-          quantity: Number(this.quantity),
-          price: this.price,
-        });
-        // close modal on form submit
-        this.$emit("close");
-      }
-    },
-  },
+	name: 'Modal',
+	data() {
+		return {
+			quantity: '',
+		};
+	},
+	props: {
+		title: String,
+		description: String,
+		price: Number,
+		id: Number,
+	},
+	methods: {
+		onSubmit(event) {
+			event.preventDefault();
+			console.log('event', event.target[0].value);
+			// if (!this.quantity) {
+			//   console.log("hello error");
+			// }
+			// TODO: if value = 0, disable buttton
+			// add error message for null values
+			if (event.target[0].value == 0 || event.target[0].value == '') {
+				return '';
+			} else {
+				// send product info as object to state
+				// triggers setProduct action
+				this.$store.dispatch('setProduct', {
+					id: this.id,
+					title: this.title,
+					quantity: Number(this.quantity),
+					price: this.price,
+				});
+				// close modal on form submit
+				this.$emit('close');
+			}
+		},
+	},
 };
 </script>
 
 <style scoped>
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .modal {
-  background: #ffffff;
-  box-shadow: 2px 2px 20px 1px;
-  overflow-x: auto;
-  display: flex;
-  flex-direction: column;
-  /* height: 400px; */
-  width: 400px;
+	background: #ffffff;
+	box-shadow: 2px 2px 20px 1px;
+	overflow-x: auto;
+	display: flex;
+	flex-direction: column;
+	/* height: 400px; */
+	width: 400px;
 }
 
 .modal-header,
 .modal-footer {
-  padding: 15px;
-  display: flex;
+	padding: 15px;
+	display: flex;
 }
 
 .modal-header {
-  position: relative;
-  color: #4aae9b;
-  justify-content: space-between;
+	position: relative;
+	color: #4aae9b;
+	justify-content: space-between;
 }
 
 .modal-footer {
-  flex-direction: column;
-  justify-content: flex-end;
+	flex-direction: column;
+	justify-content: flex-end;
 }
 
 .modal-btns {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .modal-btns button {
-  flex: 1;
-  margin: 10px;
-  padding: 10px;
+	flex: 1;
+	margin: 10px;
+	padding: 10px;
 }
 
 .modal-body {
-  position: relative;
-  padding: 0px 15px;
-  text-align: left;
+	position: relative;
+	padding: 0px 15px;
+	text-align: left;
 }
 
 .modal-body > .order-form {
-  text-align: center;
+	text-align: center;
 }
 
 .modal-body img {
-  display: block;
-  margin: 0 auto;
+	display: block;
+	margin: 0 auto;
 }
 
 .modal-body select {
-  margin: 10px;
-  width: 50%;
+	margin: 10px;
+	width: 50%;
 }
 
 .modal-body .modal-radio,
 .modal-body .modal-input {
-  text-align: left;
-  padding: 15px 0px;
+	text-align: left;
+	padding: 15px 0px;
 }
 
-input[type="number"] {
-  border: none;
+input[type='number'] {
+	border: none;
 }
 
 .btn-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  font-size: 20px;
-  padding: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #9a9a9a;
-  background: transparent;
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	font-size: 20px;
+	padding: 10px;
+	cursor: pointer;
+	font-weight: bold;
+	color: #9a9a9a;
+	background: transparent;
 }
 
 .btn {
-  color: black;
-  background: #00ccbc;
-  border: 1px solid #00ccbc;
-  border-radius: 5px;
-  font-weight: 700;
+	color: black;
+	background: #00ccbc;
+	border: 1px solid #00ccbc;
+	border-radius: 5px;
+	font-weight: 700;
 }
 </style>

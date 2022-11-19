@@ -4,38 +4,39 @@
     <button type="button" class="order-btn" @click="showModal">
       {{ text }}
     </button>
-    <Modal v-show="isModalVisible" @close="closeModal" />
   </div>
 </template>
 
 <script>
-import Modal from "./Modal.vue";
+// import Modal from "./Modal.vue";
 export default {
   name: "Button",
   components: {
-    Modal,
+    // Modal,
   },
-  data() {
-    return {
-      isModalVisible: false,
-    };
-  },
+  // data() {
+  //   return {
+  //     isModalVisible: false,
+  //   };
+  // },
   methods: {
-    showModal() {
-      console.log("show modal");
-      console.log("isVisible", this.isModalVisible);
-      this.isModalVisible = true;
+    clickButton() {
+      console.log("click bitch");
     },
-    closeModal() {
-      console.log("close modal");
-      console.log("isVisible", this.isModalVisible);
-      this.isModalVisible = false;
-    },
+    // showModal() {
+    //   console.log("show modal");
+    //   console.log("isVisible", this.isModalVisible);
+    //   this.isModalVisible = true;
+    // },
+    // closeModal() {
+    //   console.log("close modal");
+    //   console.log("isVisible", this.isModalVisible);
+    //   this.isModalVisible = false;
+    // },
   },
   props: {
     text: String,
   },
-  emits: ["closeModal"],
 };
 </script>
 

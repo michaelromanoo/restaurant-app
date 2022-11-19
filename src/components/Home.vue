@@ -1,3 +1,4 @@
+// OLD CODE
 <template>
   <div class="content">
     <div class="restaurant-info">
@@ -26,7 +27,9 @@
                 quis?
               </p>
             </div>
-            <button type="button" class="order-btn" @click="showModal">Add to Order</button>
+            <button type="button" class="order-btn" @click="showModal">
+              Add to Order
+            </button>
           </div>
         </div>
         <div class="card">
@@ -39,7 +42,9 @@
                 quis?
               </p>
             </div>
-            <button type="button" class="order-btn" @click="showModal">Add to Order</button>
+            <button type="button" class="order-btn" @click="showModal">
+              Add to Order
+            </button>
           </div>
         </div>
         <div class="card">
@@ -52,53 +57,61 @@
                 quis?
               </p>
             </div>
-            <button type="button" class="order-btn" @click="showModal">Add to Order</button>
+            <button type="button" class="order-btn" @click="showModal">
+              Add to Order
+            </button>
           </div>
         </div>
       </div>
       <div class="menu">
-          <div class="card">
-            <div class="card-content">
-              <img src="https://dummyimage.com/200" alt="" />
-              <div class="card-text">
-                <h2>Menu Item</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Magnam, quis?
-                </p>
-              </div>
-              <button type="button" class="order-btn" @click="showModal">Add to Order</button>
+        <div class="card">
+          <div class="card-content">
+            <img src="https://dummyimage.com/200" alt="" />
+            <div class="card-text">
+              <h2>Menu Item</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
+                quis?
+              </p>
             </div>
+            <button type="button" class="order-btn" @click="showModal">
+              Add to Order
+            </button>
           </div>
-          <div class="card">
-            <div class="card-content">
-              <img src="https://dummyimage.com/200" alt="" />
-              <div class="card-text">
-                <h2>Menu Item</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Magnam, quis?
-                </p>
-              </div>
-              <button type="button" class="order-btn" @click="showModal">Add to Order</button>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <img src="https://dummyimage.com/200" alt="" />
+            <div class="card-text">
+              <h2>Menu Item</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
+                quis?
+              </p>
             </div>
+            <button type="button" class="order-btn" @click="showModal">
+              Add to Order
+            </button>
           </div>
-          <div class="card">
-            <div class="card-content">
-              <img src="https://dummyimage.com/200" alt="" />
-              <div class="card-text">
-                <h2>Menu Item</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Magnam, quis?
-                </p>
-                <button type="button" class="order-btn" @click="showModal">Add to Order</button>
-              </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <img src="https://dummyimage.com/200" alt="" />
+            <div class="card-text">
+              <h2>Menu Item</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
+                quis?
+              </p>
+              <button type="button" class="order-btn" @click="showModal">
+                Add to Order
+              </button>
             </div>
           </div>
         </div>
+      </div>
     </div>
-    <Modal v-show="isModalVisible" @close="closeModal" />
+    <!-- <Modal v-show="isModalVisible" @close="closeModal" /> -->
     <div class="basket-info">
       <div class="basket-card">
         <h2>Your Basket</h2>
@@ -110,29 +123,30 @@
 </template>
 
 <script>
-import Modal from './Modal'
+// import Modal from "./Modal";
 
 export default {
-  name: "Home", 
-  components: {
-    Modal
-  },
+  name: "Home",
+  // components: {
+  //   Modal,
+  // },
   props: {
     msg: String,
   },
-   data() {
-      return {
-        isModalVisible: false,
-      };
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
+  methods: {
+    showModal() {
+      console.log("click button");
+      this.isModalVisible = true;
     },
-    methods: {
-      showModal() {
-        this.isModalVisible = true;
-      },
-      closeModal() {
-        this.isModalVisible = false;
-      }
-    }
+    closeModal() {
+      this.isModalVisible = false;
+    },
+  },
 };
 </script>
 
@@ -179,15 +193,15 @@ a {
   padding: 10px 30px;
   border-radius: 10px;
   background-color: gray;
-  width: 100%;  
+  width: 100%;
 }
 
 .menu {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
+  display: flex;
+  /* flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center; */
 }
 
 .card {
