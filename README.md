@@ -1,10 +1,14 @@
 # restaurant-app
 
-A simple restaurant app built where users can add items to a cart using Vue.js & Vuex
+A simple restaurant webste built where users can add items to a cart using Vue.js & Vuex
+
+## Live Site
+
+The site has been deployed using Github Pages and can be accessed with this link: https://michaelromanoo.github.io/restaurant-app/
 
 ## Installation
 
-install the required packages by running:
+To run the project locally, install the required packages by running:
 
 ```bash
 $ npm install
