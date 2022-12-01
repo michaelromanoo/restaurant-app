@@ -14,7 +14,8 @@ const getters = {
 	// get all products
 	allProducts: (state) => state.products,
 	// get products length
-	productsLength: (state) => state.products.length,
+	productsLength: (state) =>
+		state.products.reduce((acc, curr) => acc + curr.quantity, 0),
 	// get price of all products
 	totalPrice: (state) =>
 		state.products.reduce((acc, curr) => acc + curr.price * curr.quantity, 0),
