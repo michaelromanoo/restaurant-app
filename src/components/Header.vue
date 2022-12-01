@@ -21,7 +21,9 @@ import { mapGetters } from 'vuex';
 
 export default {
 	name: 'Header',
-	computed: mapGetters(['productsLength']),
+	computed: {
+		...mapGetters(['productsLength']),
+	},
 };
 </script>
 

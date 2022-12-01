@@ -53,7 +53,9 @@
 import { mapActions, mapGetters } from 'vuex';
 export default {
 	name: 'Basket',
-	computed: mapGetters(['allProducts', 'totalPrice']),
+	computed: {
+		...mapGetters(['allProducts', 'totalPrice']),
+	},
 	methods: {
 		...mapActions(['incrementQuantity', 'decrementQuantity']),
 		// incrementQuantity(product_id) {

@@ -1,20 +1,19 @@
-// import font awesome
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+// import vuex
+import { createApp } from 'vue';
+import App from './App.vue';
 
 // import vuex
-import store from "./store/store";
+import store from './store/store.js';
 
-import Vue from "vue";
-import App from "./App.vue";
-
-Vue.config.productionTip = false;
-
+// import font awesome core
+import { library } from '@fortawesome/fontawesome-svg-core';
+// import font awesome icon component
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+// import shopping cart icon
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+// add icon to library
 library.add(faCartShopping);
-Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-new Vue({
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+const app = createApp(App);
+
+app.component('font-awesome-icon', FontAwesomeIcon).use(store).mount('#app');
