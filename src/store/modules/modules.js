@@ -1,15 +1,19 @@
 // a centralized store for all the components in an application
 // with rules ensuring that the state can only be mutated in a predictable fashion
 // each module contains its own state, getters, actions & mutations
+// single state tree, the single object that contains all your applocation level state & serves as the single source of truth
 
-// single source of truth
-const state = {
-	strict: true,
-	products: [],
+const getIntialState = () => {
+	return {
+		strict: true,
+		products: [],
+	};
 };
 
+const state = getIntialState();
+
 // used to compute derived state based on store state
-// computed properties for stores.
+// computed properties for stores
 const getters = {
 	// get all products
 	allProducts: (state) => state.products,
@@ -65,18 +69,10 @@ const mutations = {
 		}
 
 		console.log('after decrement quantity', product.quantity);
-
-		// product[0].quantity > 0
-		//   ? product[0].quantity--
-		//   : state.products.pop(product[0]);
-		// if quantity before decrement > 0, decrease by 1
-		// if (product[0].quantity > 0) {
-		//   product[0].quantity--;
-		// }
-		// stop decrement when quantity = 0
-		// if (product[0].quantity == 0) {
-		//   // state.products.pop(product[0]);
-		// }
+	},
+	clearCart(state) {
+		Object.assign(state, getIntialState());
+		console.log('new state', state);
 	},
 };
 
@@ -91,6 +87,9 @@ const actions = {
 	},
 	decrementQuantity({ commit }, id) {
 		commit('decrementQuantity', id);
+	},
+	clearCart({ commit }) {
+		commit('clearCart');
 	},
 };
 

@@ -34,7 +34,7 @@
 				</div>
 				<p v-if="totalPrice > 0">Subtotal: {{ totalPrice }}</p>
 				<div>
-					<button>Clear Cart</button>
+					<button @click="clearCart">Clear Cart</button>
 				</div>
 			</template>
 			<template v-else>
@@ -54,18 +54,10 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
 	name: 'Basket',
 	computed: {
-		...mapGetters(['allProducts', 'totalPrice']),
+		...mapGetters(['allProducts', 'totalPrice', 'productsLength']),
 	},
 	methods: {
-		...mapActions(['incrementQuantity', 'decrementQuantity']),
-		// incrementQuantity(product_id) {
-		//   // console.log("increment quantity");
-		//   // console.log("product id", product_id);
-		//   this.$store.dispatch("incrementQuantity", product_id);
-		// },
-		// decrementQuantity() {
-		//   console.log("decrement quantity");
-		// },
+		...mapActions(['incrementQuantity', 'decrementQuantity', 'clearCart']),
 	},
 };
 </script>
